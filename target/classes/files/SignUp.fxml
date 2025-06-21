@@ -14,13 +14,13 @@
    <VBox layoutX="314.0" prefHeight="571.0" prefWidth="273.0">
       <children>
          <VBox prefHeight="200.0" prefWidth="100.0" />
-         <TextField promptText="Username" />
-         <TextField promptText="Password" />
-         <TextField promptText="Confirm Password" />
+         <TextField fx:id="userNameTextField" promptText="Username" />
+         <TextField fx:id="passwordTextField" promptText="Password" />
+         <TextField fx:id="confirmPasswordTextField" promptText="Confirm Password" />
          <HBox prefHeight="37.0" prefWidth="273.0">
             <children>
                <VBox prefHeight="200.0" prefWidth="68.0" />
-               <Button mnemonicParsing="false" text="Button" />
+               <Button fx:id="registerButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="137.0" text="Register" />
             </children>
          </HBox>
       </children></VBox>
