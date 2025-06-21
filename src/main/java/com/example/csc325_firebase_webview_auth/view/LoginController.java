@@ -2,10 +2,7 @@ package com.example.csc325_firebase_webview_auth.view;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import org.json.JSONObject;
 
 import java.io.*;
@@ -25,10 +22,7 @@ public class LoginController {
     @FXML
     private Button loginButton, signUpButton;
 
-    @FXML
-    private Label statusLabel;
-
-    private static final String API_KEY = "AIzaSyBV-Csx6BSIUBGWiU2ar3OltY_1yH3sU9o";
+    private static final String API_KEY ="AIzaSyBV-Csx6BSIUBGWiU2ar3OltY_1yH3sU9o";
 
     @FXML
     private void handleLogin(ActionEvent event) {
@@ -36,7 +30,7 @@ public class LoginController {
         String password = passwordField.getText();
 
         if(email.isEmpty() || password.isEmpty()){
-            statusLabel.setText("Please enter a valid email address and password");
+            showAlert("Error", "Please enter a valid email address and password");
             return;
         }
 
@@ -60,20 +54,35 @@ public class LoginController {
 
          if(conn.getResponseCode() == 200) {
              String idToken = jsonObject.getString("idToken");
-             statusLabel.setText("Successfully logged in");
-             App.setRoot("/files/AccessFBView.fxml");
+             try {
+                 App.setRoot("/files/AccessFBView.fxml");
+             } catch (Exception e) {
+                 e.printStackTrace();
+             }
          } else {
              String error = jsonObject.getJSONObject("error").getString("message");
 
-             statusLabel.setText("Login failed: " + error);
+             showAlert("Login Failed", error);
          }
         } catch (Exception e) {
-            statusLabel.setText("Login failed: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
     @FXML
     private void handleSignUp(ActionEvent event) throws IOException {
-        App.setRoot("/files/SignUp.fxml");
+        try {
+            App.setRoot("/files/SignUp.fxml");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void showAlert(String title, String message){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

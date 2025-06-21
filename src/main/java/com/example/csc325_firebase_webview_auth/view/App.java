@@ -5,11 +5,14 @@ import com.example.csc325_firebase_webview_auth.model.FirestoreContext;
 import com.google.cloud.firestore.Firestore;
 import com.google.firebase.auth.FirebaseAuth;
 import java.io.IOException;
+
+import javafx.animation.PauseTransition;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 /**
  * JavaFX App
@@ -25,9 +28,26 @@ public class App extends Application {
     public void start(Stage primaryStage) throws Exception {
         fstore = contxtFirebase.firebase();
         fauth = FirebaseAuth.getInstance();
-        scene = new Scene(loadFXML("/files/AccessFBView.fxml"));
-        primaryStage.setScene(scene);
+
+        System.out.println(App.class.getResource("/files/Login.fxml"));
+        // Start with splash screen
+        Parent splashRoot = loadFXML("/files/SplashScreen.fxml");
+        Scene splashScene = new Scene(splashRoot);
+        primaryStage.setScene(splashScene);
         primaryStage.show();
+
+        // Delay to switch to login screen
+        PauseTransition delay = new PauseTransition(Duration.seconds(3));
+        delay.setOnFinished(e -> {
+            try {
+                Parent loginRoot = loadFXML("/files/Login.fxml");
+                scene = new Scene(loginRoot);
+                primaryStage.setScene(scene);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
+        delay.play();
     }
 
     public static void setRoot(String fxml) throws IOException {
@@ -35,7 +55,7 @@ public class App extends Application {
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml ));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml));
         return fxmlLoader.load();
     }
 
