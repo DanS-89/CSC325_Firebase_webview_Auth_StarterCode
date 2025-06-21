@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="571.0" prefWidth="894.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.csc325_firebase_webview_auth.view.AccessFBView">
+   <ImageView fx:id="splashImage" fitHeight="571.0" fitWidth="894.0">
+      <image>
+         <Image url="@/files/Login.jpg" />
+      </image>
+   </ImageView>
+   <VBox layoutX="314.0" prefHeight="571.0" prefWidth="273.0">
+      <children>
+         <VBox prefHeight="200.0" prefWidth="100.0" />
+         <TextField promptText="Username" />
+         <TextField promptText="Password" />
+         <TextField promptText="Confirm Password" />
+         <HBox prefHeight="37.0" prefWidth="273.0">
+            <children>
+               <VBox prefHeight="200.0" prefWidth="68.0" />
+               <Button mnemonicParsing="false" text="Button" />
+            </children>
+         </HBox>
+      </children></VBox>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+</AnchorPane>

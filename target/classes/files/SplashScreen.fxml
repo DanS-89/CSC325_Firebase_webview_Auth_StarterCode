@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="571.0" prefWidth="894.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.csc325_firebase_webview_auth.view.AccessFBView">
+   <ImageView fx:id="splashImage" fitHeight="571.0" fitWidth="894.0">
+      <image>
+         <Image url="@/files/splash.jpg" />
+      </image>
+   </ImageView>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+</AnchorPane>
