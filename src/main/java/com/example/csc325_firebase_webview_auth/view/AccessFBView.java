@@ -21,9 +21,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class AccessFBView {
 
@@ -40,19 +39,35 @@ public class AccessFBView {
     private Button readButton;
     @FXML
     private TextArea outputField;
-     private boolean key;
+    @FXML
+    private TableView<Person> personTableView;
+    @FXML
+    private TableColumn<Person, String> nameColumn, majorColumn;
+    @FXML
+    private TableColumn<Person, Integer> ageColumn;
+
+    private boolean key;
     private ObservableList<Person> listOfUsers = FXCollections.observableArrayList();
     private Person person;
     public ObservableList<Person> getListOfUsers() {
         return listOfUsers;
     }
 
+    @FXML
     void initialize() {
 
         AccessDataViewModel accessDataViewModel = new AccessDataViewModel();
+        personTableView.setItems(listOfUsers);
         nameField.textProperty().bindBidirectional(accessDataViewModel.userNameProperty());
         majorField.textProperty().bindBidirectional(accessDataViewModel.userMajorProperty());
         writeButton.disableProperty().bind(accessDataViewModel.isWritePossibleProperty().not());
+
+
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        majorColumn.setCellValueFactory(new PropertyValueFactory<>("major"));
+        ageColumn.setCellValueFactory(new PropertyValueFactory<>("age"));
+
+
     }
 
     @FXML
@@ -60,21 +75,22 @@ public class AccessFBView {
         addData();
     }
 
-        @FXML
+    @FXML
     private void readRecord(ActionEvent event) {
         readFirebase();
     }
 
-            @FXML
+    @FXML
     private void regRecord(ActionEvent event) {
         registerUser();
     }
 
-     @FXML
+    @FXML
     private void switchToSecondary() throws IOException {
         App.setRoot("/files/WebContainer.fxml");
     }
 
+    @FXML
     public void addData() {
 
         DocumentReference docRef = App.fstore.collection("References").document(UUID.randomUUID().toString());
@@ -87,41 +103,32 @@ public class AccessFBView {
         ApiFuture<WriteResult> result = docRef.set(data);
     }
 
-        public boolean readFirebase()
-         {
-             key = false;
-
+    public boolean readFirebase() {
+        key = false;
         //asynchronously retrieve all documents
         ApiFuture<QuerySnapshot> future =  App.fstore.collection("References").get();
         // future.get() blocks on response
         List<QueryDocumentSnapshot> documents;
-        try
-        {
+        try {
             documents = future.get().getDocuments();
-            if(documents.size()>0)
-            {
+            listOfUsers.clear();
+            if(documents.size() > 0) {
                 System.out.println("Outing....");
-                for (QueryDocumentSnapshot document : documents)
-                {
-                    outputField.setText(outputField.getText()+ document.getData().get("Name")+ " , Major: "+
-                            document.getData().get("Major")+ " , Age: "+
-                            document.getData().get("Age")+ " \n ");
+                for (QueryDocumentSnapshot document : documents) {
+                    String name = String.valueOf(document.getData().get("Name"));
+                    String major = String.valueOf(document.getData().get("Major"));
+                    int age = Integer.parseInt(document.getData().get("Age").toString());
                     System.out.println(document.getId() + " => " + document.getData().get("Name"));
-                    person  = new Person(String.valueOf(document.getData().get("Name")),
-                            document.getData().get("Major").toString(),
-                            Integer.parseInt(document.getData().get("Age").toString()));
+                    Person person  = new Person(name, major, age);
                     listOfUsers.add(person);
+                    personTableView.setItems(listOfUsers);
                 }
-            }
-            else
-            {
+            } else {
                System.out.println("No data");
             }
             key=true;
-
         }
-        catch (InterruptedException | ExecutionException ex)
-        {
+        catch (InterruptedException | ExecutionException ex) {
              ex.printStackTrace();
         }
         return key;
