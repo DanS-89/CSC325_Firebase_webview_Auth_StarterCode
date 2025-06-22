@@ -5,12 +5,16 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class SplashScreenController {
+    @FXML
+    private ImageView splashImage;
+
     @FXML
     public void initialize() {
         Timer timer = new Timer();
@@ -21,7 +25,7 @@ public class SplashScreenController {
                     try {
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("/files/Login.fxml"));
                         Parent root = loader.load();
-                        Stage stage = (Stage) root.getScene().getWindow();  // safest way is to pass stage, see notes below
+                        Stage stage = (Stage) splashImage.getScene().getWindow();  // safest way is to pass stage, see notes below
                         Scene scene = new Scene(root);
                         stage.setScene(scene);
                     } catch (IOException e) {
