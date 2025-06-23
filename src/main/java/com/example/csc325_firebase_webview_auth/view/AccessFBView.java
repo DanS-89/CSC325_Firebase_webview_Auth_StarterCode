@@ -11,12 +11,10 @@ import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.UserRecord;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.ExecutionException;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -27,7 +25,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class AccessFBView {
 
 
-     @FXML
+    @FXML
     private TextField nameField;
     @FXML
     private TextField majorField;
@@ -38,13 +36,13 @@ public class AccessFBView {
     @FXML
     private Button readButton;
     @FXML
-    private TextArea outputField;
-    @FXML
     private TableView<Person> personTableView;
     @FXML
     private TableColumn<Person, String> nameColumn, majorColumn;
     @FXML
     private TableColumn<Person, Integer> ageColumn;
+    @FXML
+    private MenuItem registerMenuItem, closeMenuItem, deleteMenuItem, helpMenuItem;
 
     private boolean key;
     private ObservableList<Person> listOfUsers = FXCollections.observableArrayList();
@@ -68,6 +66,8 @@ public class AccessFBView {
         ageColumn.setCellValueFactory(new PropertyValueFactory<>("age"));
 
 
+
+        readFirebase();
     }
 
     @FXML
@@ -101,6 +101,7 @@ public class AccessFBView {
         data.put("Age", Integer.parseInt(ageField.getText()));
         //asynchronously write data
         ApiFuture<WriteResult> result = docRef.set(data);
+        readFirebase();
     }
 
     public boolean readFirebase() {
@@ -121,8 +122,10 @@ public class AccessFBView {
                     System.out.println(document.getId() + " => " + document.getData().get("Name"));
                     Person person  = new Person(name, major, age);
                     listOfUsers.add(person);
-                    personTableView.setItems(listOfUsers);
+                    Collections.sort(listOfUsers, Comparator.comparing(Person::getName));
+
                 }
+                personTableView.setItems(listOfUsers);
             } else {
                System.out.println("No data");
             }
@@ -139,7 +142,17 @@ public class AccessFBView {
             UserRecord user = App.fauth.getUser("name");
             //String url = user.getPassword();
 
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
+        }
+    }
+
+    @FXML
+    private void handleRegister(ActionEvent event) {
+        try {
+            App.setRoot("/files/SignUp.fxml");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -162,6 +175,41 @@ public class AccessFBView {
            // Logger.getLogger(FirestoreContext.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
+    }
 
+    @FXML
+    private void handleClose(ActionEvent event) {
+        Platform.exit();
+    }
+
+    @FXML
+    private void handleHelp(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Help");
+        alert.setHeaderText("Firebase JavaFX Application");
+        alert.setContentText("Author: Daniel Stevens\nVersion 1.0\nCSC325 Firestore Project");
+        alert.showAndWait();
+    }
+
+    @FXML
+    private void handleDelete(ActionEvent event) {
+        Person selected = personTableView.getSelectionModel().getSelectedItem();
+        if (selected == null) {
+            return;
+        }
+        String nameToDelete = selected.getName();
+
+        ApiFuture<QuerySnapshot> future = App.fstore.collection("References")
+                .whereEqualTo("Name", nameToDelete)
+                .get();
+        try {
+            List<QueryDocumentSnapshot> documents = future.get().getDocuments();
+            for (QueryDocumentSnapshot doc : documents) {
+                App.fstore.collection("References").document(doc.getId()).delete();
+            }
+            readFirebase();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

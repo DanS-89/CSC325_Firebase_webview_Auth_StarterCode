@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e4ae5f67-a013-4cbc-a589-49fa29fa9b6b" name="Changes" comment="Commit - updated splash screen controller to fix errors getting thrown when app was launched.">
+    <list default="true" id="e4ae5f67-a013-4cbc-a589-49fa29fa9b6b" name="Changes" comment="Commit - directed output to the tableview">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/csc325_firebase_webview_auth/view/AccessFBView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/csc325_firebase_webview_auth/view/AccessFBView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/files/AccessFBView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/files/AccessFBView.fxml" afterDir="false" />
@@ -172,7 +172,7 @@
       <workItem from="1750542691592" duration="8539000" />
       <workItem from="1750565433171" duration="327000" />
       <workItem from="1750565768574" duration="1801000" />
-      <workItem from="1750609889430" duration="7021000" />
+      <workItem from="1750609889430" duration="11964000" />
     </task>
     <task id="LOCAL-00001" summary="reduce Java version to 17">
       <option name="closed" value="true" />
@@ -254,7 +254,15 @@
       <option name="project" value="LOCAL" />
       <updated>1750612204541</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Commit - directed output to the tableview">
+      <option name="closed" value="true" />
+      <created>1750626040822</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1750626040822</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -274,6 +282,7 @@
     <MESSAGE value="Commit - splash set up, linked login page, linked sign up page, linked main GUI, set up controllers. runs, can register and login" />
     <MESSAGE value="Commit - applied css styling" />
     <MESSAGE value="Commit - updated splash screen controller to fix errors getting thrown when app was launched." />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit - updated splash screen controller to fix errors getting thrown when app was launched." />
+    <MESSAGE value="Commit - directed output to the tableview" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit - directed output to the tableview" />
   </component>
 </project>
