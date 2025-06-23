@@ -24,7 +24,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class AccessFBView {
 
-
     @FXML
     private TextField nameField;
     @FXML
@@ -64,8 +63,6 @@ public class AccessFBView {
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         majorColumn.setCellValueFactory(new PropertyValueFactory<>("major"));
         ageColumn.setCellValueFactory(new PropertyValueFactory<>("age"));
-
-
 
         readFirebase();
     }
