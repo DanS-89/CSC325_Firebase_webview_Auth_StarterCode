@@ -77,8 +77,6 @@ public class WebContainerController implements Initializable {
     @FXML
     Label label;
     
-    
-    
     @FXML
     WebView webView;
     private WebEngine webEngine;
