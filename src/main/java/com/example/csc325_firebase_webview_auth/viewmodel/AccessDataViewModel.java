@@ -9,21 +9,51 @@ import javafx.beans.property.StringProperty;
 
 public class AccessDataViewModel {
 
-	private final StringProperty userName = new SimpleStringProperty();
+	private final StringProperty userId = new SimpleStringProperty();
+	private final StringProperty userFirstName= new SimpleStringProperty();
+	private final StringProperty userLastName = new SimpleStringProperty();
+	private final StringProperty userEmail = new SimpleStringProperty();
+	private final StringProperty userDepartment = new SimpleStringProperty();
 	private final StringProperty userMajor = new SimpleStringProperty();
-	private final int age=0;
+	private final StringProperty userImageUrl = new SimpleStringProperty();
 	private final ReadOnlyBooleanWrapper writePossible = new ReadOnlyBooleanWrapper();
 
 	public AccessDataViewModel() {
-		writePossible.bind(userName.isNotEmpty().and(userMajor.isNotEmpty()));
+		writePossible.bind(
+				userFirstName.isNotEmpty()
+				.and(userLastName.isNotEmpty())
+				.and(userEmail.isNotEmpty())
+				.and(userMajor.isNotEmpty())
+				.and(userDepartment.isNotEmpty())
+		);
 	}
 
-	public StringProperty userNameProperty() {
-		return userName;
+	public StringProperty userIdProperty() {
+		return userId;
+	}
+
+	public StringProperty userDepartment(){
+		return userDepartment;
+	}
+
+	public StringProperty userFirstNameProperty() {
+		return userFirstName;
+	}
+
+	public StringProperty userLastNameProperty() {
+		return userLastName;
+	}
+
+	public StringProperty userEmailProperty() {
+		return userEmail;
 	}
 
 	public StringProperty userMajorProperty() {
 		return userMajor;
+	}
+
+	public StringProperty userImageUrlProperty() {
+		return userImageUrl;
 	}
 
 	public ReadOnlyBooleanProperty isWritePossibleProperty() {

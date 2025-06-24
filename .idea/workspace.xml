@@ -4,12 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e4ae5f67-a013-4cbc-a589-49fa29fa9b6b" name="Changes" comment="Commit - directed output to the tableview">
+    <list default="true" id="e4ae5f67-a013-4cbc-a589-49fa29fa9b6b" name="Changes" comment="Commit - updated GUI to match mod 5 assignment">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/csc325_firebase_webview_auth/model/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/csc325_firebase_webview_auth/model/Person.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/csc325_firebase_webview_auth/view/AccessFBView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/csc325_firebase_webview_auth/view/AccessFBView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/csc325_firebase_webview_auth/view/WebContainerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/csc325_firebase_webview_auth/view/WebContainerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/csc325_firebase_webview_auth/viewmodel/AccessDataViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/csc325_firebase_webview_auth/viewmodel/AccessDataViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/files/AccessFBView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/files/AccessFBView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/csc325_firebase_webview_auth/model/Person.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/csc325_firebase_webview_auth/model/Person.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/csc325_firebase_webview_auth/view/AccessFBView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/csc325_firebase_webview_auth/view/AccessFBView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/csc325_firebase_webview_auth/view/WebContainerController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/csc325_firebase_webview_auth/view/WebContainerController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/csc325_firebase_webview_auth/view/WebContainerController$Bridge.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/csc325_firebase_webview_auth/view/WebContainerController$Bridge.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/csc325_firebase_webview_auth/view/WebContainerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/csc325_firebase_webview_auth/view/WebContainerController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/csc325_firebase_webview_auth/viewmodel/AccessDataViewModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/csc325_firebase_webview_auth/viewmodel/AccessDataViewModel.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/files/AccessFBView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/files/AccessFBView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/module-info.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +30,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="package.json" />
       </list>
     </option>
   </component>
@@ -32,12 +43,12 @@
     &quot;assignee&quot;: &quot;DanS-89&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/DanS-89/CSC325_Firebase_webview_Auth_StarterCode.git&quot;,
-    &quot;accountId&quot;: &quot;068c6118-64f8-4b22-9dd9-b4357f342874&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/DanS-89/CSC325_Firebase_webview_Auth_StarterCode.git",
+    "accountId": "9c7d0c1f-cebc-4414-9b58-155ad929b8df"
   }
-}</component>
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
 }</component>
@@ -49,24 +60,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.App.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/steve/IdeaProjects/CSC325_Firebase_webview_Auth_StarterCode/src/main/resources/files&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.App.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "my-updates",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/steve/IdeaProjects/CSC325_Firebase_webview_Auth_StarterCode/src/main/resources/files",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\steve\IdeaProjects\CSC325_Firebase_webview_Auth_StarterCode\src\main\resources\files" />
@@ -172,7 +183,8 @@
       <workItem from="1750542691592" duration="8539000" />
       <workItem from="1750565433171" duration="327000" />
       <workItem from="1750565768574" duration="1801000" />
-      <workItem from="1750609889430" duration="11964000" />
+      <workItem from="1750609889430" duration="23470000" />
+      <workItem from="1750722215600" duration="10945000" />
     </task>
     <task id="LOCAL-00001" summary="reduce Java version to 17">
       <option name="closed" value="true" />
@@ -262,7 +274,31 @@
       <option name="project" value="LOCAL" />
       <updated>1750626040822</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Commit - completed menu implementation">
+      <option name="closed" value="true" />
+      <created>1750642228243</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1750642228243</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Commit - completed menu implementation">
+      <option name="closed" value="true" />
+      <created>1750643358390</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1750643358390</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Commit - updated GUI to match mod 5 assignment">
+      <option name="closed" value="true" />
+      <created>1750736028141</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1750736028141</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -283,6 +319,8 @@
     <MESSAGE value="Commit - applied css styling" />
     <MESSAGE value="Commit - updated splash screen controller to fix errors getting thrown when app was launched." />
     <MESSAGE value="Commit - directed output to the tableview" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit - directed output to the tableview" />
+    <MESSAGE value="Commit - completed menu implementation" />
+    <MESSAGE value="Commit - updated GUI to match mod 5 assignment" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit - updated GUI to match mod 5 assignment" />
   </component>
 </project>

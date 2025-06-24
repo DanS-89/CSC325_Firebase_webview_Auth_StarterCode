@@ -4,6 +4,8 @@
  */
 package com.example.csc325_firebase_webview_auth.model;
 
+import javafx.beans.property.SimpleStringProperty;
+
 /**
  *
  * @author MoaathAlrajab
@@ -16,40 +18,42 @@ package com.example.csc325_firebase_webview_auth.model;
  *
  */
 public class Person {
-    private String name;
-    private String major;
-    private int age;
+    private final SimpleStringProperty id;
+    private final SimpleStringProperty firstName;
+    private final SimpleStringProperty lastName;
+    private final SimpleStringProperty department;
+    private final SimpleStringProperty major;
+    private final SimpleStringProperty email;
+    private final SimpleStringProperty imageUrl;
 
-    public Person(String name, String major, int age) {
-        this.name = name;
-        this.major = major;
-        this.age = age;
+    public Person(String id, String firstName, String lastName, String department,String major, String email, String imageUrl) {
+        this.id = new SimpleStringProperty(id);
+        this.firstName = new SimpleStringProperty(firstName);
+        this.lastName = new SimpleStringProperty(lastName);
+        this.department = new SimpleStringProperty(department);
+        this.major = new SimpleStringProperty(major);
+        this.email = new SimpleStringProperty(email);
+        this.imageUrl = new SimpleStringProperty(imageUrl);
     }
 
-    public String getName() {
-        return name;
-    }
+    public String getId() { return id.get(); }
+    public void setId(String value) { id.set(value); }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public String getFirstName() { return firstName.get(); }
+    public void setFirstName(String value) { firstName.set(value); }
 
-    public String getMajor() {
-        return major;
-    }
+    public String getLastName() { return lastName.get(); }
+    public void setLastName(String value) { lastName.set(value); }
 
-    public void setMajor(String major) {
-        this.major = major;
-    }
+    public String getDepartment() { return department.get(); }
+    public void setDepartment(String value) { department.set(value); }
 
-    public int getAge() {
-        return age;
-    }
+    public String getEmail() { return email.get(); }
+    public void setEmail(String value) { email.set(value); }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
-    
-    
-    
+    public String getMajor() { return major.get(); }
+    public void setMajor(String value) { major.set(value); }
+
+    public String getImageUrl() { return imageUrl.get(); }
+    public void setImageUrl(String value) { imageUrl.set(value); }
 }

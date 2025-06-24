@@ -7,13 +7,19 @@ import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
 import com.google.cloud.firestore.QuerySnapshot;
 import com.google.cloud.firestore.WriteResult;
+import com.google.cloud.storage.Blob;
+import com.google.cloud.storage.Bucket;
+import com.google.cloud.storage.Storage;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.UserRecord;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
 
+import com.google.firebase.cloud.StorageClient;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,13 +27,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 
 public class AccessFBView {
 
     @FXML
-    private TextField nameField;
-    @FXML
-    private TextField majorField;
+    private TextField firstNameField, lastNameField, emailField, departmentField, majorField, imageUrlField;
     @FXML
     private TextField ageField;
     @FXML
@@ -37,11 +45,11 @@ public class AccessFBView {
     @FXML
     private TableView<Person> personTableView;
     @FXML
-    private TableColumn<Person, String> nameColumn, majorColumn;
-    @FXML
-    private TableColumn<Person, Integer> ageColumn;
+    private TableColumn<Person, String> idColumn, firstNameColumn, lastNameColumn, emailColumn, majorColumn, departmentColumn;
     @FXML
     private MenuItem registerMenuItem, closeMenuItem, deleteMenuItem, helpMenuItem;
+    @FXML
+    private ImageView profileImageView;
 
     private boolean key;
     private ObservableList<Person> listOfUsers = FXCollections.observableArrayList();
@@ -49,21 +57,40 @@ public class AccessFBView {
     public ObservableList<Person> getListOfUsers() {
         return listOfUsers;
     }
+    private String imageUrl;
 
     @FXML
     void initialize() {
 
         AccessDataViewModel accessDataViewModel = new AccessDataViewModel();
         personTableView.setItems(listOfUsers);
-        nameField.textProperty().bindBidirectional(accessDataViewModel.userNameProperty());
+
+        firstNameField.textProperty().bindBidirectional(accessDataViewModel.userFirstNameProperty());
+        lastNameField.textProperty().bindBidirectional(accessDataViewModel.userLastNameProperty());
+        departmentField.textProperty().bindBidirectional(accessDataViewModel.userDepartment());
+        emailField.textProperty().bindBidirectional(accessDataViewModel.userEmailProperty());
         majorField.textProperty().bindBidirectional(accessDataViewModel.userMajorProperty());
+        imageUrlField.textProperty().bindBidirectional(accessDataViewModel.userImageUrlProperty());
+
         writeButton.disableProperty().bind(accessDataViewModel.isWritePossibleProperty().not());
 
-
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        firstNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        lastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
+        departmentColumn.setCellValueFactory(new PropertyValueFactory<>("department"));
         majorColumn.setCellValueFactory(new PropertyValueFactory<>("major"));
-        ageColumn.setCellValueFactory(new PropertyValueFactory<>("age"));
 
+        personTableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue != null) {
+                String url = newValue.getImageUrl();
+                if(url != null) {
+                    profileImageView.setImage(new Image(url));
+                } else {
+                    profileImageView.setImage(new Image(getClass().getResourceAsStream("/profile_empty.png")));
+                }
+            }
+        });
         readFirebase();
     }
 
@@ -90,12 +117,17 @@ public class AccessFBView {
     @FXML
     public void addData() {
 
-        DocumentReference docRef = App.fstore.collection("References").document(UUID.randomUUID().toString());
+        String id = UUID.randomUUID().toString();
+        DocumentReference docRef = App.fstore.collection("References").document(id);
 
         Map<String, Object> data = new HashMap<>();
-        data.put("Name", nameField.getText());
-        data.put("Major", majorField.getText());
-        data.put("Age", Integer.parseInt(ageField.getText()));
+        data.put("id", id);
+        data.put("firstName", firstNameField.getText());
+        data.put("lastName", lastNameField.getText());
+        data.put("department", departmentField.getText());
+        data.put("major", majorField.getText());
+        data.put("email", emailField.getText());
+        data.put("imageUrl", imageUrl);
         //asynchronously write data
         ApiFuture<WriteResult> result = docRef.set(data);
         readFirebase();
@@ -113,13 +145,19 @@ public class AccessFBView {
             if(documents.size() > 0) {
                 System.out.println("Outing....");
                 for (QueryDocumentSnapshot document : documents) {
-                    String name = String.valueOf(document.getData().get("Name"));
-                    String major = String.valueOf(document.getData().get("Major"));
-                    int age = Integer.parseInt(document.getData().get("Age").toString());
+
+                    String id = document.getId();
+                    String firstName = document.getString("firstName");
+                    String lastName = document.getString("lastName");
+                    String department = document.getString("department");
+                    String major = document.getString("major");
+                    String email = document.getString("email");
+                    String imageUrl = document.getString("imageUrl");
+
                     System.out.println(document.getId() + " => " + document.getData().get("Name"));
-                    Person person  = new Person(name, major, age);
+                    Person person  = new Person(id, firstName, lastName, department, major, email, imageUrl);
                     listOfUsers.add(person);
-                    Collections.sort(listOfUsers, Comparator.comparing(Person::getName));
+                    Collections.sort(listOfUsers, Comparator.comparing(Person::getId));
 
                 }
                 personTableView.setItems(listOfUsers);
@@ -194,10 +232,10 @@ public class AccessFBView {
         if (selected == null) {
             return;
         }
-        String nameToDelete = selected.getName();
+        String idToDelete = selected.getId();
 
         ApiFuture<QuerySnapshot> future = App.fstore.collection("References")
-                .whereEqualTo("Name", nameToDelete)
+                .whereEqualTo("id", idToDelete)
                 .get();
         try {
             List<QueryDocumentSnapshot> documents = future.get().getDocuments();
@@ -207,6 +245,39 @@ public class AccessFBView {
             readFirebase();
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleImageUpload(MouseEvent event) {
+        FileChooser filechooser = new FileChooser();
+        filechooser.setTitle("Select Image");
+        filechooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.jpg", "*.png", ".jpeg"));
+
+        File selectedFile = filechooser.showOpenDialog(profileImageView.getScene().getWindow());
+
+        if (selectedFile != null) {
+            try {
+                String uploadedUrl = uploadImage(selectedFile);
+                if(uploadedUrl != null) {
+                    imageUrl = uploadedUrl;
+                    profileImageView.setImage(new Image(selectedFile.toURI().toString()));
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private String uploadImage(File file){
+        try {
+            String fileName = UUID.randomUUID().toString() + "=" + file.getName();
+            Bucket bucket = StorageClient.getInstance().bucket("csc325-c8b73.firebasestorage.app");
+            Blob blob = bucket.create("profile_images/" + fileName, new FileInputStream(file), Bucket.BlobWriteOption.predefinedAcl(Storage.PredefinedAcl.PUBLIC_READ));
+            return "https://storage.googleapis.com/" + bucket.getName() + "/profile_images/" + fileName;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }

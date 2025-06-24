@@ -9,11 +9,11 @@
 
 <AnchorPane prefHeight="571.0" prefWidth="894.0" stylesheets="@StyleSheet.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.csc325_firebase_webview_auth.view.AccessFBView">
    <children>
-      <MenuBar layoutY="1.0" prefHeight="27.0" prefWidth="894.0">
+      <MenuBar layoutX="14.0" layoutY="1.0" prefHeight="27.0" prefWidth="894.0">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
-                  <MenuItem fx:id="registerMenuItem" mnemonicParsing="false" onAction="#handleRegister" text="Register" />
+                  <MenuItem fx:id="registerMenuItem" mnemonicParsing="false" text="Register" />
               <MenuItem fx:id="closeMenuItem" mnemonicParsing="false" onAction="#handleClose" text="Close" />
             </items>
           </Menu>
@@ -22,6 +22,11 @@
               <MenuItem fx:id="deleteMenuItem" mnemonicParsing="false" onAction="#handleDelete" text="Delete" />
             </items>
           </Menu>
+            <Menu mnemonicParsing="false" text="Theme">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Action 1" />
+              </items>
+            </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <items>
               <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="About" />
@@ -33,7 +38,7 @@
          <children>
             <AnchorPane fx:id="leftPanel" prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <ImageView fitHeight="150.0" fitWidth="129.0" layoutX="17.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="profileImageView" fitHeight="150.0" fitWidth="129.0" layoutX="17.0" layoutY="14.0" onMouseClicked="#handleImageUpload" pickOnBounds="true" preserveRatio="true">
                      <effect>
                         <InnerShadow>
                            <color>
@@ -51,33 +56,48 @@
                <children>
                   <TableView fx:id="personTableView" prefHeight="550.0" prefWidth="540.0">
                     <columns>
-                      <TableColumn fx:id="nameColumn" prefWidth="75.0" text="name" />
-                      <TableColumn fx:id="majorColumn" prefWidth="75.0" text="major" />
-                        <TableColumn fx:id="ageColumn" prefWidth="75.0" text="age" />
+                      <TableColumn fx:id="idColumn" prefWidth="75.0" text="id" />
+                      <TableColumn fx:id="firstNameColumn" prefWidth="75.0" text="First Name" />
+                        <TableColumn fx:id="lastNameColumn" prefWidth="75.0" text="Last Name" />
+                        <TableColumn fx:id="departmentColumn" prefWidth="75.0" text="Department" />
+                        <TableColumn fx:id="majorColumn" prefWidth="75.0" text="Major" />
+                        <TableColumn fx:id="emailColumn" prefWidth="135.0" text="Email" />
                     </columns>
                   </TableView>
                </children>
             </VBox>
             <VBox fx:id="rightPanel" prefHeight="535.0" prefWidth="241.0" spacing="10.0">
                <children>
-                  <TextField fx:id="nameField" alignment="TOP_LEFT" prefHeight="25.0" prefWidth="272.0" promptText="Name" />
-                  <TextField fx:id="majorField" promptText="Major" />
-                  <TextField fx:id="ageField" promptText="Age" />
-                  <HBox prefHeight="32.0" prefWidth="465.0">
+                  <VBox fx:id="textFieldBox" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Button fx:id="readButton" mnemonicParsing="false" onAction="#readRecord" prefHeight="25.0" prefWidth="123.0" text="Read" textAlignment="CENTER">
-                           <HBox.margin>
-                              <Insets left="20.0" right="20.0" />
-                           </HBox.margin>
-                        </Button>
-                        <Button fx:id="writeButton" mnemonicParsing="false" onAction="#addRecord" prefHeight="25.0" prefWidth="128.0" text="Write" textAlignment="CENTER">
-                           <HBox.margin>
-                              <Insets left="20.0" right="20.0" />
-                           </HBox.margin>
-                        </Button>
+                        <TextField fx:id="firstNameField" alignment="TOP_LEFT" prefHeight="25.0" prefWidth="272.0" promptText="First Name" />
+                        <TextField fx:id="lastNameField" promptText="Last Name" />
+                        <TextField fx:id="departmentField" promptText="Department" />
+                        <TextField fx:id="majorField" promptText="Major" />
+                        <TextField fx:id="emailField" promptText="Email" />
+                        <TextField fx:id="imageUrlField" promptText="Image URL" />
                      </children>
-                  </HBox>
-                  <Button fx:id="switchroot" mnemonicParsing="false" onAction="#switchToSecondary" prefHeight="25.0" prefWidth="283.0" text="Switch" textAlignment="CENTER" />
+                  </VBox>
+                  <VBox prefHeight="135.0" prefWidth="182.0" />
+                  <VBox fx:id="buttonBox" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <HBox prefHeight="32.0" prefWidth="465.0">
+                           <children>
+                              <Button fx:id="readButton" mnemonicParsing="false" onAction="#readRecord" prefHeight="25.0" prefWidth="123.0" text="Read" textAlignment="CENTER">
+                                 <HBox.margin>
+                                    <Insets left="20.0" right="20.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button fx:id="writeButton" mnemonicParsing="false" onAction="#addRecord" prefHeight="25.0" prefWidth="128.0" text="Write" textAlignment="CENTER">
+                                 <HBox.margin>
+                                    <Insets left="20.0" right="20.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <Button fx:id="switchroot" mnemonicParsing="false" onAction="#switchToSecondary" prefHeight="25.0" prefWidth="283.0" text="Switch" textAlignment="CENTER" />
+                     </children>
+                  </VBox>
                </children>
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -85,6 +105,7 @@
             </VBox>
          </children>
       </HBox>
+      <ProgressBar prefHeight="40.0" prefWidth="906.0" progress="0.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" />
    </children>
    <opaqueInsets>
       <Insets />
