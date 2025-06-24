@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e4ae5f67-a013-4cbc-a589-49fa29fa9b6b" name="Changes" comment="Commit - updated GUI to match mod 5 assignment">
+    <list default="true" id="e4ae5f67-a013-4cbc-a589-49fa29fa9b6b" name="Changes" comment="Commit - commit after removing firebase key and resetting commit history to remove JSON key">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/csc325_firebase_webview_auth/view/AccessFBView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/csc325_firebase_webview_auth/view/AccessFBView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -170,7 +171,7 @@
       <workItem from="1750565433171" duration="327000" />
       <workItem from="1750565768574" duration="1801000" />
       <workItem from="1750609889430" duration="23470000" />
-      <workItem from="1750722215600" duration="11902000" />
+      <workItem from="1750722215600" duration="17029000" />
     </task>
     <task id="LOCAL-00001" summary="reduce Java version to 17">
       <option name="closed" value="true" />
@@ -292,7 +293,15 @@
       <option name="project" value="LOCAL" />
       <updated>1750737077159</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Commit - commit after removing firebase key and resetting commit history to remove JSON key">
+      <option name="closed" value="true" />
+      <created>1750804755423</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1750804755423</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -315,6 +324,7 @@
     <MESSAGE value="Commit - directed output to the tableview" />
     <MESSAGE value="Commit - completed menu implementation" />
     <MESSAGE value="Commit - updated GUI to match mod 5 assignment" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit - updated GUI to match mod 5 assignment" />
+    <MESSAGE value="Commit - commit after removing firebase key and resetting commit history to remove JSON key" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit - commit after removing firebase key and resetting commit history to remove JSON key" />
   </component>
 </project>

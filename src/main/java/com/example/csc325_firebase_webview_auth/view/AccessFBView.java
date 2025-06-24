@@ -83,6 +83,13 @@ public class AccessFBView {
 
         personTableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if(newValue != null) {
+                firstNameField.setText(newValue.getFirstName());
+                lastNameField.setText(newValue.getLastName());
+                majorField.setText(newValue.getDepartment());
+                departmentField.setText(newValue.getDepartment());
+                emailField.setText(newValue.getEmail());
+                imageUrlField.setText(newValue.getImageUrl());
+
                 String url = newValue.getImageUrl();
                 if(url != null) {
                     profileImageView.setImage(new Image(url));
