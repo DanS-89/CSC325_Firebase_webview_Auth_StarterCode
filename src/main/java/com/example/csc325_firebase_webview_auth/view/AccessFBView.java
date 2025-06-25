@@ -275,7 +275,6 @@ public class AccessFBView {
         alert.showAndWait();
     }
 
-
     @FXML
     private void handleDelete(ActionEvent event) {
         Person selected = personTableView.getSelectionModel().getSelectedItem();

@@ -13,7 +13,7 @@
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
-                  <MenuItem fx:id="registerMenuItem" mnemonicParsing="false" text="Register" />
+                  <MenuItem fx:id="registerMenuItem" mnemonicParsing="false" onAction="#handleRegister" text="Register" />
               <MenuItem fx:id="closeMenuItem" mnemonicParsing="false" onAction="#handleClose" text="Close" />
             </items>
           </Menu>
