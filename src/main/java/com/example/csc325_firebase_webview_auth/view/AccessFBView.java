@@ -137,7 +137,9 @@ public class AccessFBView {
     @FXML
     public void addData() {
 
-        String id = UUID.randomUUID().toString();
+        int nextId = getNextAvailableId();
+        String id = String.valueOf(nextId);
+
         DocumentReference docRef = App.fstore.collection("References").document(id);
 
         Map<String, Object> data = new HashMap<>();
@@ -157,6 +159,27 @@ public class AccessFBView {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private int getNextAvailableId() {
+        int maxId = 0;
+        try {
+            ApiFuture<QuerySnapshot> future = App.fstore.collection("References").get();
+            List<QueryDocumentSnapshot> documents = future.get().getDocuments();
+
+            for (QueryDocumentSnapshot doc : documents) {
+                String idStr = doc.getString("id");
+                if (idStr != null && idStr.matches("\\d+")) {
+                    int id = Integer.parseInt(idStr);
+                    if (id > maxId) {
+                        maxId = id;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return maxId + 1;
     }
 
     public boolean readFirebase() {
