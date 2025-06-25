@@ -38,10 +38,6 @@ public class AccessFBView {
     @FXML
     private TextField firstNameField, lastNameField, emailField, departmentField, majorField, imageUrlField;
     @FXML
-    private Button writeButton;
-    @FXML
-    private Button readButton;
-    @FXML
     private TableView<Person> personTableView;
     @FXML
     private TableColumn<Person, String> idColumn, firstNameColumn, lastNameColumn, emailColumn, majorColumn, departmentColumn;
@@ -50,7 +46,7 @@ public class AccessFBView {
     @FXML
     private ImageView profileImageView;
     @FXML
-    private Button addButton, deleteButton, editButton, clearButton;
+    private Button addButton, deleteButton, editButton, clearButton, backToLoginButton;
 
     private boolean key;
     private ObservableList<Person> listOfUsers = FXCollections.observableArrayList();
@@ -73,7 +69,6 @@ public class AccessFBView {
         majorField.textProperty().bindBidirectional(accessDataViewModel.userMajorProperty());
         imageUrlField.textProperty().bindBidirectional(accessDataViewModel.userImageUrlProperty());
 
-        writeButton.disableProperty().bind(accessDataViewModel.isWritePossibleProperty().not());
 
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         firstNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
@@ -203,7 +198,7 @@ public class AccessFBView {
                     String email = document.getString("email");
                     String imageUrl = document.getString("imageUrl");
 
-                    System.out.println(document.getId() + " => " + document.getData().get("Name"));
+                    System.out.println(document.getId() + " => " + document.getData().get("id"));
                     Person person  = new Person(id, firstName, lastName, department, major, email, imageUrl);
                     listOfUsers.add(person);
                     Collections.sort(listOfUsers, Comparator.comparing(Person::getId));
@@ -239,6 +234,8 @@ public class AccessFBView {
             e.printStackTrace();
         }
     }
+
+
 
     public boolean registerUser() {
         UserRecord.CreateRequest request = new UserRecord.CreateRequest()

@@ -12,6 +12,11 @@
     -fx-spacing: 10;
 }
 
+#loginPanel {
+    -fx-padding: 10;
+    -fx-spacing: 10;
+}
+
 #rightPanel {
     -fx-background-color: #66cc00;
 }
