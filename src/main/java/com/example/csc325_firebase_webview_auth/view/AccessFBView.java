@@ -16,6 +16,7 @@ import com.google.firebase.auth.UserRecord;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
 
@@ -37,8 +38,6 @@ public class AccessFBView {
     @FXML
     private TextField firstNameField, lastNameField, emailField, departmentField, majorField, imageUrlField;
     @FXML
-    private TextField ageField;
-    @FXML
     private Button writeButton;
     @FXML
     private Button readButton;
@@ -50,6 +49,8 @@ public class AccessFBView {
     private MenuItem registerMenuItem, closeMenuItem, deleteMenuItem, helpMenuItem;
     @FXML
     private ImageView profileImageView;
+    @FXML
+    private Button addButton, deleteButton, editButton, clearButton;
 
     private boolean key;
     private ObservableList<Person> listOfUsers = FXCollections.observableArrayList();
@@ -81,6 +82,7 @@ public class AccessFBView {
         departmentColumn.setCellValueFactory(new PropertyValueFactory<>("department"));
         majorColumn.setCellValueFactory(new PropertyValueFactory<>("major"));
 
+
         personTableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if(newValue != null) {
                 firstNameField.setText(newValue.getFirstName());
@@ -94,7 +96,13 @@ public class AccessFBView {
                 if(url != null) {
                     profileImageView.setImage(new Image(url));
                 } else {
-                    profileImageView.setImage(new Image(getClass().getResourceAsStream("/profile_empty.png")));
+                    InputStream stream = getClass().getResourceAsStream("/files/profile_empty.png");
+                    if(stream != null) {
+                        profileImageView.setImage(new Image(stream));
+                    } else {
+                        System.out.println("Could not find image");
+                        profileImageView.setImage(null);
+                    }
                 }
             }
         });
@@ -122,6 +130,11 @@ public class AccessFBView {
     }
 
     @FXML
+    private void clearButtonClick(ActionEvent event) {
+        clearForm();
+    }
+
+    @FXML
     public void addData() {
 
         String id = UUID.randomUUID().toString();
@@ -134,10 +147,16 @@ public class AccessFBView {
         data.put("department", departmentField.getText());
         data.put("major", majorField.getText());
         data.put("email", emailField.getText());
-        data.put("imageUrl", imageUrl);
+        data.put("imageUrl", imageUrlField.getText());
         //asynchronously write data
-        ApiFuture<WriteResult> result = docRef.set(data);
-        readFirebase();
+        try {
+            ApiFuture<WriteResult> result = docRef.set(data);
+            result.get();
+            readFirebase();
+            clearForm();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public boolean readFirebase() {
@@ -153,7 +172,7 @@ public class AccessFBView {
                 System.out.println("Outing....");
                 for (QueryDocumentSnapshot document : documents) {
 
-                    String id = document.getId();
+                    String id = document.getString("id");
                     String firstName = document.getString("firstName");
                     String lastName = document.getString("lastName");
                     String department = document.getString("department");
@@ -233,6 +252,7 @@ public class AccessFBView {
         alert.showAndWait();
     }
 
+
     @FXML
     private void handleDelete(ActionEvent event) {
         Person selected = personTableView.getSelectionModel().getSelectedItem();
@@ -250,6 +270,7 @@ public class AccessFBView {
                 App.fstore.collection("References").document(doc.getId()).delete();
             }
             readFirebase();
+            clearForm();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -267,14 +288,15 @@ public class AccessFBView {
             try {
                 String uploadedUrl = uploadImage(selectedFile);
                 if(uploadedUrl != null) {
-                    imageUrl = uploadedUrl;
-                    profileImageView.setImage(new Image(selectedFile.toURI().toString()));
+                    imageUrlField.setText(uploadedUrl);
+                    profileImageView.setImage(new Image(uploadedUrl));
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
     }
+
 
     private String uploadImage(File file){
         try {
@@ -285,6 +307,53 @@ public class AccessFBView {
         } catch (IOException e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    private void clearForm(){
+        firstNameField.clear();
+        lastNameField.clear();
+        departmentField.clear();
+        majorField.clear();
+        emailField.clear();
+        imageUrlField.clear();
+        profileImageView.setImage(new Image(getClass().getResourceAsStream("/files/profile_empty.png")));
+    }
+
+    @FXML
+    private void handleEdit(ActionEvent event) {
+        Person selectedPerson = personTableView.getSelectionModel().getSelectedItem();
+
+        if (selectedPerson != null) {
+            selectedPerson.setFirstName(firstNameField.getText());
+            selectedPerson.setLastName(lastNameField.getText());
+            selectedPerson.setDepartment(departmentField.getText());
+            selectedPerson.setMajor(majorField.getText());
+            selectedPerson.setEmail(emailField.getText());
+            selectedPerson.setImageUrl(imageUrlField.getText());
+
+            updatePersonInFirebase(selectedPerson);
+            readFirebase();
+            clearForm();
+        }
+    }
+
+    private void updatePersonInFirebase(Person person) {
+        try {
+            Map<String, Object> updates = new HashMap<>();
+            updates.put("firstName", person.getFirstName());
+            updates.put("lastName", person.getLastName());
+            updates.put("department", person.getDepartment());
+            updates.put("major", person.getMajor());
+            updates.put("email", person.getEmail());
+            updates.put("imageUrl", person.getImageUrl());
+
+            App.fstore.collection("References")
+                    .document(person.getId())
+                    .update(updates);
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
