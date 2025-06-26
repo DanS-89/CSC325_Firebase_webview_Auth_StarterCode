@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e4ae5f67-a013-4cbc-a589-49fa29fa9b6b" name="Changes" comment="Commit - final matches to former assignment">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/csc325_firebase_webview_auth/view/AccessFBView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/csc325_firebase_webview_auth/view/AccessFBView.java" afterDir="false" />
+    <list default="true" id="e4ae5f67-a013-4cbc-a589-49fa29fa9b6b" name="Changes" comment="Commit - finalizing updates">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/csc325_firebase_webview_auth/view/view.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/csc325_firebase_webview_auth/viewmodel/viewmodel.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -174,7 +174,7 @@
       <workItem from="1750609889430" duration="23470000" />
       <workItem from="1750722215600" duration="33142000" />
       <workItem from="1750890243783" duration="3272000" />
-      <workItem from="1750900108022" duration="451000" />
+      <workItem from="1750900108022" duration="1504000" />
     </task>
     <task id="LOCAL-00001" summary="reduce Java version to 17">
       <option name="closed" value="true" />
@@ -344,7 +344,15 @@
       <option name="project" value="LOCAL" />
       <updated>1750893627909</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Commit - finalizing updates">
+      <option name="closed" value="true" />
+      <created>1750903647314</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1750903647314</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -382,6 +390,7 @@
     <MESSAGE value="Commit - updated initialize to fill text fields with selected person data" />
     <MESSAGE value="Commit - updated button functionality" />
     <MESSAGE value="Commit - final matches to former assignment" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit - final matches to former assignment" />
+    <MESSAGE value="Commit - finalizing updates" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit - finalizing updates" />
   </component>
 </project>

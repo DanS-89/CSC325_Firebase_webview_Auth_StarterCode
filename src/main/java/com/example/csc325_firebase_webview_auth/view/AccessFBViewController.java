@@ -10,7 +10,6 @@ import com.google.cloud.firestore.WriteResult;
 import com.google.cloud.storage.Blob;
 import com.google.cloud.storage.Bucket;
 import com.google.cloud.storage.Storage;
-import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.UserRecord;
 
 import java.io.File;
@@ -33,7 +32,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 
-public class AccessFBView {
+public class AccessFBViewController {
 
     @FXML
     private TextField firstNameField, lastNameField, emailField, departmentField, majorField, imageUrlField;

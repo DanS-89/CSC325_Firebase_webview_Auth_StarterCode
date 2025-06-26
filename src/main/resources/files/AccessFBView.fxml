@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 
-<AnchorPane prefHeight="571.0" prefWidth="894.0" stylesheets="@StyleSheet.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.csc325_firebase_webview_auth.view.AccessFBView">
+<AnchorPane prefHeight="571.0" prefWidth="894.0" stylesheets="@StyleSheet.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.csc325_firebase_webview_auth.view.AccessFBViewController">
    <children>
       <MenuBar layoutY="1.0" prefHeight="27.0" prefWidth="908.0">
         <menus>
