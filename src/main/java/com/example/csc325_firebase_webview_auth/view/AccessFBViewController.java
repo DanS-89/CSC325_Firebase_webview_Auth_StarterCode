@@ -34,6 +34,9 @@ import javafx.stage.FileChooser;
 
 public class AccessFBViewController {
 
+    /**
+     * FXML decl
+     */
     @FXML
     private TextField firstNameField, lastNameField, emailField, departmentField, majorField, imageUrlField;
     @FXML
