@@ -115,11 +115,6 @@ public class AccessFBView {
     }
 
     @FXML
-    private void regRecord(ActionEvent event) {
-        registerUser();
-    }
-
-    @FXML
     private void switchToSecondary() throws IOException {
         App.setRoot("/files/WebContainer.fxml");
     }
@@ -145,7 +140,7 @@ public class AccessFBView {
         data.put("major", majorField.getText());
         data.put("email", emailField.getText());
         data.put("imageUrl", imageUrlField.getText());
-        //asynchronously write data
+
         try {
             ApiFuture<WriteResult> result = docRef.set(data);
             result.get();
@@ -179,9 +174,9 @@ public class AccessFBView {
 
     public boolean readFirebase() {
         key = false;
-        //asynchronously retrieve all documents
+
         ApiFuture<QuerySnapshot> future =  App.fstore.collection("References").get();
-        // future.get() blocks on response
+
         List<QueryDocumentSnapshot> documents;
         try {
             documents = future.get().getDocuments();
@@ -232,29 +227,6 @@ public class AccessFBView {
             App.setRoot("/files/SignUp.fxml");
         } catch (IOException e) {
             e.printStackTrace();
-        }
-    }
-
-
-
-    public boolean registerUser() {
-        UserRecord.CreateRequest request = new UserRecord.CreateRequest()
-                .setEmail("user@example.com")
-                .setEmailVerified(false)
-                .setPassword("secretPassword")
-                .setPhoneNumber("+11234567890")
-                .setDisplayName("John Doe")
-                .setDisabled(false);
-
-        UserRecord userRecord;
-        try {
-            userRecord = App.fauth.createUser(request);
-            System.out.println("Successfully created new user: " + userRecord.getUid());
-            return true;
-
-        } catch (FirebaseAuthException ex) {
-           // Logger.getLogger(FirestoreContext.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
         }
     }
 

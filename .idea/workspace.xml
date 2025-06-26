@@ -4,20 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e4ae5f67-a013-4cbc-a589-49fa29fa9b6b" name="Changes" comment="Commit - updated button functionality">
+    <list default="true" id="e4ae5f67-a013-4cbc-a589-49fa29fa9b6b" name="Changes" comment="Commit - final matches to former assignment">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/csc325_firebase_webview_auth/view/AccessFBView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/csc325_firebase_webview_auth/view/AccessFBView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/csc325_firebase_webview_auth/view/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/csc325_firebase_webview_auth/view/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/csc325_firebase_webview_auth/view/SignUpController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/csc325_firebase_webview_auth/view/SignUpController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/files/AccessFBView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/files/AccessFBView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/files/SignUp.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/files/SignUp.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/files/StyleSheet.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/files/StyleSheet.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/csc325_firebase_webview_auth/view/AccessFBView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/csc325_firebase_webview_auth/view/AccessFBView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/csc325_firebase_webview_auth/view/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/csc325_firebase_webview_auth/view/LoginController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/csc325_firebase_webview_auth/view/SignUpController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/csc325_firebase_webview_auth/view/SignUpController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/files/AccessFBView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/files/AccessFBView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/files/SignUp.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/files/SignUp.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/files/StyleSheet.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/files/StyleSheet.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -184,7 +173,8 @@
       <workItem from="1750565768574" duration="1801000" />
       <workItem from="1750609889430" duration="23470000" />
       <workItem from="1750722215600" duration="33142000" />
-      <workItem from="1750890243783" duration="3018000" />
+      <workItem from="1750890243783" duration="3272000" />
+      <workItem from="1750900108022" duration="451000" />
     </task>
     <task id="LOCAL-00001" summary="reduce Java version to 17">
       <option name="closed" value="true" />
@@ -346,7 +336,15 @@
       <option name="project" value="LOCAL" />
       <updated>1750818022480</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Commit - final matches to former assignment">
+      <option name="closed" value="true" />
+      <created>1750893627909</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1750893627909</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -383,6 +381,7 @@
     <MESSAGE value="Commit - commit after removing firebase key and resetting commit history to remove JSON key" />
     <MESSAGE value="Commit - updated initialize to fill text fields with selected person data" />
     <MESSAGE value="Commit - updated button functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit - updated button functionality" />
+    <MESSAGE value="Commit - final matches to former assignment" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit - final matches to former assignment" />
   </component>
 </project>
