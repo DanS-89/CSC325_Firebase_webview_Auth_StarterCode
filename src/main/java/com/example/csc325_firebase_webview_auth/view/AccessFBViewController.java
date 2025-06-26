@@ -20,6 +20,7 @@ import java.util.*;
 import java.util.concurrent.ExecutionException;
 
 import com.google.firebase.cloud.StorageClient;
+import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -31,11 +32,15 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
+import javafx.util.Duration;
 
+/**
+ * Main Screen controller
+ */
 public class AccessFBViewController {
 
     /**
-     * FXML decl
+     * FXML declarations for fxml objects and names
      */
     @FXML
     private TextField firstNameField, lastNameField, emailField, departmentField, majorField, imageUrlField;
@@ -50,6 +55,7 @@ public class AccessFBViewController {
     @FXML
     private Button addButton, deleteButton, editButton, clearButton, backToLoginButton;
 
+    //member variables
     private boolean key;
     private ObservableList<Person> listOfUsers = FXCollections.observableArrayList();
     private Person person;
@@ -58,6 +64,10 @@ public class AccessFBViewController {
     }
     private String imageUrl;
 
+    /**
+     * Initializes controller and sets up table view
+     * Sets bindings and configures table columns to display data
+     */
     @FXML
     void initialize() {
 
@@ -106,26 +116,36 @@ public class AccessFBViewController {
         readFirebase();
     }
 
+    /**
+     * Handles action event for adding a record
+     * @param event action event that triggers function
+     */
     @FXML
     private void addRecord(ActionEvent event) {
         addData();
     }
 
+    /**
+     * Handle action event for
+     * @param event
+     */
     @FXML
     private void readRecord(ActionEvent event) {
         readFirebase();
     }
 
-    @FXML
-    private void switchToSecondary() throws IOException {
-        App.setRoot("/files/WebContainer.fxml");
-    }
-
+    /**
+     * Handles action event for clearing a record
+     * @param event action event that triggers function
+     */
     @FXML
     private void clearButtonClick(ActionEvent event) {
         clearForm();
     }
 
+    /**
+     * Function to add a person to the database
+     */
     @FXML
     public void addData() {
 
@@ -153,6 +173,10 @@ public class AccessFBViewController {
         }
     }
 
+    /**
+     * Gets the next available id
+     * @return next max id
+     */
     private int getNextAvailableId() {
         int maxId = 0;
         try {
@@ -269,6 +293,10 @@ public class AccessFBViewController {
         }
     }
 
+    /**
+     * handles image upload event
+     * @param event action event that triggers image upload
+     */
     @FXML
     private void handleImageUpload(MouseEvent event) {
         FileChooser filechooser = new FileChooser();
@@ -290,7 +318,11 @@ public class AccessFBViewController {
         }
     }
 
-
+    /**
+     * uploads an image to the database
+     * @param file file to upload
+     * @return the link to the firebase object
+     */
     private String uploadImage(File file){
         try {
             String fileName = UUID.randomUUID().toString() + "=" + file.getName();
@@ -303,6 +335,9 @@ public class AccessFBViewController {
         }
     }
 
+    /**
+     * clears the text fields
+     */
     private void clearForm(){
         firstNameField.clear();
         lastNameField.clear();
@@ -313,6 +348,10 @@ public class AccessFBViewController {
         profileImageView.setImage(new Image(getClass().getResourceAsStream("/files/profile_empty.png")));
     }
 
+    /**
+     * Handles the edit button function
+     * @param event action event that triggers edit
+     */
     @FXML
     private void handleEdit(ActionEvent event) {
         Person selectedPerson = personTableView.getSelectionModel().getSelectedItem();
@@ -327,10 +366,21 @@ public class AccessFBViewController {
 
             updatePersonInFirebase(selectedPerson);
             readFirebase();
-            clearForm();
+            PauseTransition delay = new PauseTransition(Duration.millis(200));
+            delay.setOnFinished(e -> clearForm());
+            delay.play();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("No selection");
+            alert.setContentText("Please select a person to edit");
+            alert.showAndWait();
         }
     }
 
+    /**
+     * Updates a record in the database
+     * @param person person object to update
+     */
     private void updatePersonInFirebase(Person person) {
         try {
             Map<String, Object> updates = new HashMap<>();
@@ -344,7 +394,6 @@ public class AccessFBViewController {
             App.fstore.collection("References")
                     .document(person.getId())
                     .update(updates);
-
         } catch (Exception e) {
             e.printStackTrace();
         }
