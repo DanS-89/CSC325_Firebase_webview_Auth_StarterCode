@@ -30,13 +30,12 @@ public class App extends Application {
         fauth = FirebaseAuth.getInstance();
 
         System.out.println(App.class.getResource("/files/Login.fxml"));
-        // Start with splash screen
+
         Parent splashRoot = loadFXML("/files/SplashScreen.fxml");
         Scene splashScene = new Scene(splashRoot);
         primaryStage.setScene(splashScene);
         primaryStage.show();
 
-        // Delay to switch to login screen
         PauseTransition delay = new PauseTransition(Duration.seconds(3));
         delay.setOnFinished(e -> {
             try {

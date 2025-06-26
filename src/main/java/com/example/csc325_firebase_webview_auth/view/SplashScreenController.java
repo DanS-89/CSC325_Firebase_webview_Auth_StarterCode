@@ -25,7 +25,7 @@ public class SplashScreenController {
                     try {
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("/files/Login.fxml"));
                         Parent root = loader.load();
-                        Stage stage = (Stage) splashImage.getScene().getWindow();  // safest way is to pass stage, see notes below
+                        Stage stage = (Stage) splashImage.getScene().getWindow();
                         Scene scene = new Scene(root);
                         stage.setScene(scene);
                     } catch (IOException e) {
@@ -33,6 +33,6 @@ public class SplashScreenController {
                     }
                 });
             }
-        }, 3000); // 2.5 second delay
+        }, 3000);
     }
 }

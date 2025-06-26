@@ -3,6 +3,7 @@ package com.example.csc325_firebase_webview_auth.view;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import org.json.JSONObject;
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -13,13 +14,16 @@ import java.nio.charset.StandardCharsets;
 public class LoginController {
 
     @FXML
+    private ImageView splashImage;
+
+    @FXML
     private TextField emailTextField;
 
     @FXML
     private PasswordField passwordField;
 
     @FXML
-    private Button loginButton, signUpButton;
+    private Button loginButton, signUpButton, backToLoginButton;
 
     private static final String API_KEY ="AIzaSyBV-Csx6BSIUBGWiU2ar3OltY_1yH3sU9o";
 
@@ -76,6 +80,7 @@ public class LoginController {
             e.printStackTrace();
         }
     }
+
 
     private void showAlert(String title, String message){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
