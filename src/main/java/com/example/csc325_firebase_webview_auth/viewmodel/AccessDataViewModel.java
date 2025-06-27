@@ -1,7 +1,5 @@
 package com.example.csc325_firebase_webview_auth.viewmodel;
 
-
-
 import javafx.beans.property.ReadOnlyBooleanProperty;
 import javafx.beans.property.ReadOnlyBooleanWrapper;
 import javafx.beans.property.SimpleStringProperty;

@@ -9,12 +9,7 @@ import javafx.beans.property.SimpleStringProperty;
 /**
  *
  * @author MoaathAlrajab
- *
- *
- *
- *
  * Model:
- *
  *
  */
 public class Person {

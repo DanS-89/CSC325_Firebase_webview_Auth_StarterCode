@@ -5,7 +5,6 @@ import com.example.csc325_firebase_webview_auth.model.FirestoreContext;
 import com.google.cloud.firestore.Firestore;
 import com.google.firebase.auth.FirebaseAuth;
 import java.io.IOException;
-
 import javafx.animation.PauseTransition;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
